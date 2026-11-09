@@ -14,6 +14,32 @@ const createFeatures = catchAsync(async (req, res) => {
   });
 });
 
+const getAllFeatures = catchAsync(async (req, res) => {
+  const result = await FeatureService.getAllFeatures(req.query);
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Features retrieved successfully',
+    pagination: result.meta,
+    data: result.data,
+  });
+});
+
+const getDetailsFeatures = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await FeatureService.getDetailsFeatures(id);
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Feature details retrieved successfully',
+    data: result,
+  });
+});
+
 export const FeatureController = {
   createFeatures,
+  getAllFeatures,
+  getDetailsFeatures,
 };

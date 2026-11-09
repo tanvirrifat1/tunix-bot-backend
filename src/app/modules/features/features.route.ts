@@ -11,4 +11,14 @@ router.post(
   FeatureController.createFeatures,
 );
 
+router.get(
+  '/',
+  FeatureController.getAllFeatures,
+);
+
+router.get(
+  '/:id',
+  FeatureController.getDetailsFeatures,
+);
+
 export const FeatureRoutes = router;
